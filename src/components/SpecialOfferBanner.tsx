@@ -1,4 +1,5 @@
 import { Gift } from "lucide-react";
+import CountdownTimer from "./CountdownTimer";
 
 const SpecialOfferBanner = () => {
   return (
@@ -15,11 +16,16 @@ const SpecialOfferBanner = () => {
         </h2>
         
         {/* Description */}
-        <p className="text-primary-foreground/90 text-lg md:text-xl leading-relaxed">
+        <p className="text-primary-foreground/90 text-lg md:text-xl leading-relaxed mb-2">
           نود أن نقدم لك عرضًا خاصًا ؛ استفد من خصم{" "}
           <span className="text-gold font-bold text-2xl">45%</span>{" "}
           على هذا المنتج الفريد والجديد.
         </p>
+
+        <p className="text-gold font-bold text-lg mb-2">العرض ينتهي خلال:</p>
+        
+        {/* Countdown Timer */}
+        <CountdownTimer />
       </div>
     </section>
   );
