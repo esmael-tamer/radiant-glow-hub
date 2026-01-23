@@ -3,6 +3,7 @@ import SpecialOfferBanner from "@/components/SpecialOfferBanner";
 import ProductHero from "@/components/ProductHero";
 import FeaturesSection from "@/components/FeaturesSection";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
+import VideoTestimonials from "@/components/VideoTestimonials";
 import JaydenCollection from "@/components/JaydenCollection";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
@@ -16,6 +17,7 @@ const Index = () => {
       <ProductHero />
       <FeaturesSection />
       <TestimonialsSlider />
+      <VideoTestimonials />
       <JaydenCollection />
       <FAQSection />
       <CTASection />
