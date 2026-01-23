@@ -1,10 +1,12 @@
 import { Star, Quote } from "lucide-react";
+import { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 
 const testimonials = [
@@ -53,6 +55,18 @@ const testimonials = [
 ];
 
 const TestimonialsSlider = () => {
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [api]);
+
   return (
     <section className="bg-secondary py-16 px-4">
       <div className="container mx-auto max-w-5xl">
@@ -71,6 +85,7 @@ const TestimonialsSlider = () => {
 
         {/* Testimonials Carousel */}
         <Carousel
+          setApi={setApi}
           opts={{
             align: "start",
             loop: true,

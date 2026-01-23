@@ -1,4 +1,4 @@
-import castorOilBottle from "@/assets/castor-oil-bottle.png";
+import jaydenCollection from "@/assets/jayden-collection.jpg";
 
 const ProductHero = () => {
   return (
@@ -7,11 +7,11 @@ const ProductHero = () => {
         <div className="relative bg-gradient-to-br from-primary to-accent rounded-3xl overflow-hidden shadow-card">
           <div className="flex flex-col md:flex-row items-center p-6 md:p-10 gap-8">
             {/* Product Image */}
-            <div className="md:w-1/3 flex justify-center">
+            <div className="md:w-1/2 flex justify-center">
               <img
-                src={castorOilBottle}
-                alt="زيت الخروع الفعال"
-                className="w-48 md:w-64 h-auto animate-float drop-shadow-2xl"
+                src={jaydenCollection}
+                alt="مجموعة جايدن الفاخرة"
+                className="w-full max-w-sm h-auto rounded-2xl shadow-xl animate-float"
               />
             </div>
             
