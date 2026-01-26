@@ -15,8 +15,15 @@ const NotificationBar = () => {
         </span>
         <button
           onClick={() => setIsVisible(false)}
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-accent-foreground hover:text-accent-foreground/80 transition-colors"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setIsVisible(false);
+            }
+          }}
+          className="absolute ltr:left-4 rtl:right-4 top-1/2 -translate-y-1/2 text-accent-foreground hover:text-accent-foreground/80 transition-colors"
           aria-label="إغلاق"
+          tabIndex={0}
         >
           <X className="w-5 h-5" />
         </button>
