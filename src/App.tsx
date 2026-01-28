@@ -23,7 +23,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/radiant-glow-hub">
         <Routes>
           {/* Original landing page - untouched */}
           <Route path="/" element={<Index />} />
