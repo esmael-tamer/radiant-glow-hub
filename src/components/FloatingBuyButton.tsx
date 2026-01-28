@@ -2,6 +2,13 @@ import { useState } from "react";
 import { ShoppingBag, X, MapPin, Phone, User, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Facebook Pixel tracking
+declare global {
+    interface Window {
+        fbq: (action: string, event: string, params?: Record<string, unknown>) => void;
+    }
+}
+
 const WHATSAPP_NUMBER = "96598882565";
 
 const kuwaitAreas = [
@@ -81,6 +88,28 @@ const FloatingBuyButton = () => {
 
 ✨ شكراً لاختياركم جايدن!`;
 
+        // Track Lead event
+        if (window.fbq) {
+            window.fbq('track', 'Lead', {
+                content_name: 'مجموعة جايدن',
+                content_category: 'Order Form',
+                value: 21.15,
+                currency: 'KWD'
+            });
+        }
+
+        // Track Purchase event
+        if (window.fbq) {
+            window.fbq('track', 'Purchase', {
+                content_name: 'مجموعة جايدن',
+                content_ids: ['jayden-collection'],
+                content_type: 'product',
+                value: 21.15,
+                currency: 'KWD',
+                num_items: 4
+            });
+        }
+
         const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, "_blank");
 
@@ -93,7 +122,18 @@ const FloatingBuyButton = () => {
             <div className="fixed bottom-0 left-0 right-0 z-40 p-3 sm:p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent pointer-events-none">
                 <div className="container mx-auto max-w-md pointer-events-auto px-2">
                     <Button
-                        onClick={() => setShowCheckoutModal(true)}
+                        onClick={() => {
+                            setShowCheckoutModal(true);
+                            // Track InitiateCheckout event
+                            if (window.fbq) {
+                                window.fbq('track', 'InitiateCheckout', {
+                                    content_name: 'مجموعة جايدن',
+                                    content_ids: ['jayden-collection'],
+                                    value: 21.15,
+                                    currency: 'KWD'
+                                });
+                            }
+                        }}
                         size="lg"
                         className="w-full bg-gold hover:bg-gold/90 text-primary font-bold text-base sm:text-lg md:text-xl min-h-[52px] sm:min-h-[56px] py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-2xl animate-pulse-soft transition-all hover:scale-[1.02] focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
                         aria-label="اطلب الآن بسعر 21.15 دينار كويتي"
