@@ -15,48 +15,65 @@ import { ProductsPage } from "@/pages/shop/ProductsPage";
 import { ProductDetailsPage } from "@/pages/shop/ProductDetailsPage";
 import { CartPage } from "@/pages/shop/CartPage";
 import { CheckoutPage } from "@/pages/shop/CheckoutPage";
+import { AdminLayout } from "@/pages/admin/AdminLayout";
+import { DashboardPage } from "@/pages/admin/DashboardPage";
+import { OrdersPage } from "@/pages/admin/OrdersPage";
+import { CustomersPage } from "@/pages/admin/CustomersPage";
+import { OrdersProvider } from "@/contexts/OrdersContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter basename="/aromakw">
-        <Routes>
-          {/* Original landing page - untouched */}
-          <Route path="/" element={<Index />} />
+      <OrdersProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter basename="/aromakw">
+          <Routes>
+            {/* Original landing page - untouched */}
+            <Route path="/" element={<Index />} />
 
-          {/* Static Pages */}
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/policy" element={<PrivacyPage />} />
-          <Route path="/terms" element={<TermsPage />} />
-          <Route path="/lookup" element={<TrackOrderPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+            {/* Static Pages */}
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/policy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/lookup" element={<TrackOrderPage />} />
+            <Route path="/contact" element={<ContactPage />} />
 
-          {/* Shop page redirect */}
-          <Route path="/shop" element={<Navigate to="/shop/products" replace />} />
-          <Route path="/shop/products" element={<ShopLayout><ProductsPage /></ShopLayout>} />
+            {/* Shop page redirect */}
+            <Route path="/shop" element={<Navigate to="/shop/products" replace />} />
+            <Route path="/shop/products" element={<ShopLayout><ProductsPage /></ShopLayout>} />
 
-          {/* Arabic Shop Routes */}
-          <Route path="/ar" element={<ShopLayout><Navigate to="/ar/products" replace /></ShopLayout>} />
-          <Route path="/ar/products" element={<ShopLayout><ProductsPage /></ShopLayout>} />
-          <Route path="/ar/products/:slug" element={<ShopLayout><ProductDetailsPage /></ShopLayout>} />
-          <Route path="/ar/cart" element={<ShopLayout><CartPage /></ShopLayout>} />
-          <Route path="/ar/checkout" element={<ShopLayout><CheckoutPage /></ShopLayout>} />
+            {/* Arabic Shop Routes */}
+            <Route path="/ar" element={<ShopLayout><Navigate to="/ar/products" replace /></ShopLayout>} />
+            <Route path="/ar/products" element={<ShopLayout><ProductsPage /></ShopLayout>} />
+            <Route path="/ar/products/:slug" element={<ShopLayout><ProductDetailsPage /></ShopLayout>} />
+            <Route path="/ar/cart" element={<ShopLayout><CartPage /></ShopLayout>} />
+            <Route path="/ar/checkout" element={<ShopLayout><CheckoutPage /></ShopLayout>} />
 
-          {/* English Shop Routes */}
-          <Route path="/en" element={<ShopLayout><Navigate to="/en/products" replace /></ShopLayout>} />
-          <Route path="/en/products" element={<ShopLayout><ProductsPage /></ShopLayout>} />
-          <Route path="/en/products/:slug" element={<ShopLayout><ProductDetailsPage /></ShopLayout>} />
-          <Route path="/en/cart" element={<ShopLayout><CartPage /></ShopLayout>} />
-          <Route path="/en/checkout" element={<ShopLayout><CheckoutPage /></ShopLayout>} />
+            {/* English Shop Routes */}
+            <Route path="/en" element={<ShopLayout><Navigate to="/en/products" replace /></ShopLayout>} />
+            <Route path="/en/products" element={<ShopLayout><ProductsPage /></ShopLayout>} />
+            <Route path="/en/products/:slug" element={<ShopLayout><ProductDetailsPage /></ShopLayout>} />
+            <Route path="/en/cart" element={<ShopLayout><CartPage /></ShopLayout>} />
+            <Route path="/en/checkout" element={<ShopLayout><CheckoutPage /></ShopLayout>} />
 
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+            {/* Admin Routes - Arabic */}
+            <Route path="/ar/admin" element={<AdminLayout><DashboardPage /></AdminLayout>} />
+            <Route path="/ar/admin/orders" element={<AdminLayout><OrdersPage /></AdminLayout>} />
+            <Route path="/ar/admin/customers" element={<AdminLayout><CustomersPage /></AdminLayout>} />
+
+            {/* Admin Routes - English */}
+            <Route path="/en/admin" element={<AdminLayout><DashboardPage /></AdminLayout>} />
+            <Route path="/en/admin/orders" element={<AdminLayout><OrdersPage /></AdminLayout>} />
+            <Route path="/en/admin/customers" element={<AdminLayout><CustomersPage /></AdminLayout>} />
+
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </OrdersProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

@@ -105,4 +105,72 @@ export const en: Translations = {
     items: "items",
     item: "item",
   },
+  
+  // Admin Dashboard
+  admin: {
+    title: "Admin Dashboard",
+    dashboard: "Dashboard",
+    orders: "Orders",
+    customers: "Customers",
+    settings: "Settings",
+    
+    // Stats
+    stats: {
+      totalOrders: "Total Orders",
+      newOrdersToday: "New Orders (Today)",
+      totalCustomers: "Total Customers",
+      totalSales: "Total Sales",
+    },
+    
+    // Orders
+    ordersPage: {
+      title: "All Orders",
+      recentOrders: "Recent Orders",
+      orderNumber: "Order Number",
+      customerName: "Customer Name",
+      phone: "Phone Number",
+      area: "Area",
+      amount: "Amount",
+      status: "Status",
+      date: "Date",
+      actions: "Actions",
+      viewDetails: "View Details",
+      noOrders: "No orders found",
+      filterByStatus: "Filter by Status",
+      allStatuses: "All Statuses",
+      searchPlaceholder: "Search by name or phone...",
+      filterByArea: "Filter by Area",
+      allAreas: "All Areas",
+      items: "Items",
+      address: "Address",
+      deliveryMethod: "Delivery Method",
+      notes: "Notes",
+      createdAt: "Created At",
+      updatedAt: "Updated At",
+    },
+    
+    // Order Status
+    orderStatus: {
+      new: "New",
+      processing: "Processing",
+      delivered: "Delivered",
+      cancelled: "Cancelled",
+      updateStatus: "Update Status",
+      statusUpdated: "Order status updated",
+    },
+    
+    // Customers
+    customersPage: {
+      title: "Customers",
+      name: "Name",
+      phone: "Phone Number",
+      email: "Email",
+      area: "Area",
+      ordersCount: "Orders Count",
+      totalSpent: "Total Spent",
+      lastOrder: "Last Order",
+      noCustomers: "No customers found",
+      searchPlaceholder: "Search by name or phone...",
+    },
+  },
 };

@@ -103,6 +103,74 @@ export const ar = {
     items: "منتجات",
     item: "منتج",
   },
+  
+  // Admin Dashboard
+  admin: {
+    title: "لوحة التحكم",
+    dashboard: "الرئيسية",
+    orders: "الطلبات",
+    customers: "العملاء",
+    settings: "الإعدادات",
+    
+    // Stats
+    stats: {
+      totalOrders: "إجمالي الطلبات",
+      newOrdersToday: "الطلبات الجديدة (اليوم)",
+      totalCustomers: "إجمالي العملاء",
+      totalSales: "إجمالي المبيعات",
+    },
+    
+    // Orders
+    ordersPage: {
+      title: "جميع الطلبات",
+      recentOrders: "الطلبات الأخيرة",
+      orderNumber: "رقم الطلب",
+      customerName: "اسم العميل",
+      phone: "رقم الهاتف",
+      area: "المنطقة",
+      amount: "المبلغ",
+      status: "الحالة",
+      date: "التاريخ",
+      actions: "إجراءات",
+      viewDetails: "عرض التفاصيل",
+      noOrders: "لا توجد طلبات",
+      filterByStatus: "تصفية حسب الحالة",
+      allStatuses: "جميع الحالات",
+      searchPlaceholder: "بحث بالاسم أو رقم الهاتف...",
+      filterByArea: "تصفية حسب المنطقة",
+      allAreas: "جميع المناطق",
+      items: "المنتجات",
+      address: "العنوان",
+      deliveryMethod: "طريقة التوصيل",
+      notes: "ملاحظات",
+      createdAt: "تاريخ الإنشاء",
+      updatedAt: "تاريخ التحديث",
+    },
+    
+    // Order Status
+    orderStatus: {
+      new: "جديد",
+      processing: "قيد التجهيز",
+      delivered: "تم التوصيل",
+      cancelled: "ملغي",
+      updateStatus: "تحديث الحالة",
+      statusUpdated: "تم تحديث حالة الطلب",
+    },
+    
+    // Customers
+    customersPage: {
+      title: "العملاء",
+      name: "الاسم",
+      phone: "رقم الهاتف",
+      email: "البريد الإلكتروني",
+      area: "المنطقة",
+      ordersCount: "عدد الطلبات",
+      totalSpent: "إجمالي المشتريات",
+      lastOrder: "آخر طلب",
+      noCustomers: "لا يوجد عملاء",
+      searchPlaceholder: "بحث بالاسم أو رقم الهاتف...",
+    },
+  },
 };
 
 export type Translations = typeof ar;

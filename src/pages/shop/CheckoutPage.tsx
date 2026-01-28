@@ -28,6 +28,8 @@ import { useCart } from "@/store/cart";
 import { useLocale } from "@/contexts/LocaleContext";
 import { toast } from "@/components/ui/sonner";
 import { siteConfig, whatsappTemplates, getWhatsAppUrl } from "@/config/site";
+import { useOrders } from "@/contexts/OrdersContext";
+import { Order, OrderItem } from "@/types/order";
 
 // Form validation schema
 const checkoutSchema = z.object({
@@ -45,6 +47,7 @@ type CheckoutFormData = z.infer<typeof checkoutSchema>;
 export function CheckoutPage() {
   const { locale, t, isRTL, getLocalizedPath } = useLocale();
   const { state, getSubtotal, hasContactForPriceItems, clearCart } = useCart();
+  const { addOrder } = useOrders();
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -143,6 +146,39 @@ export function CheckoutPage() {
   };
 
   const handleWhatsAppOrder = (data: CheckoutFormData) => {
+    // Create order object and save to OrdersContext
+    const order: Order = {
+      id: `ORD-${Date.now()}`,
+      customerName: data.fullName,
+      phone: data.phone,
+      email: data.email,
+      area: data.governorate,
+      areaName: getGovernorateName(data.governorate),
+      address: data.address,
+      deliveryMethod: data.deliveryMethod,
+      deliveryMethodName: getDeliveryMethodName(data.deliveryMethod),
+      items: state.items.map((item): OrderItem => ({
+        productId: item.productId,
+        slug: item.slug,
+        name: getItemName(item),
+        name_ar: item.name_ar,
+        name_en: item.name_en,
+        price_kwd: item.price_kwd,
+        qty: item.qty,
+        subtotal: item.price_kwd !== null ? item.price_kwd * item.qty : null,
+      })),
+      subtotal: hasContactItems ? null : subtotal,
+      total: hasContactItems ? null : subtotal,
+      status: 'new',
+      notes: data.notes,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    // Save order locally
+    addOrder(order);
+
+    // Send via WhatsApp
     const message = buildWhatsAppMessage(data);
     const url = getWhatsAppUrl(message);
     window.open(url, "_blank");
