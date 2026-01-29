@@ -9,38 +9,29 @@ interface TimeLeft {
 
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    hours: 30,
-    minutes: 0,
-    seconds: 0,
+    hours: 23,
+    minutes: 59,
+    seconds: 59,
   });
 
   useEffect(() => {
-    // Set end time to 30 hours from first visit
-    const storageKey = 'jayden_offer_end_time';
-    let endTime = localStorage.getItem(storageKey);
-
-    if (!endTime) {
-      const newEndTime = new Date();
-      newEndTime.setHours(newEndTime.getHours() + 30);
-      endTime = newEndTime.getTime().toString();
-      localStorage.setItem(storageKey, endTime);
-    }
-
-    const endDate = parseInt(endTime);
-
     const calculateTimeLeft = () => {
-      const now = new Date().getTime();
-      const difference = endDate - now;
+      const now = new Date();
+      // Get midnight of next day
+      const midnight = new Date();
+      midnight.setHours(24, 0, 0, 0);
+
+      const difference = midnight.getTime() - now.getTime();
 
       if (difference > 0) {
-        const totalHours = Math.floor(difference / (1000 * 60 * 60));
         setTimeLeft({
-          hours: totalHours,
+          hours: Math.floor(difference / (1000 * 60 * 60)),
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         });
       } else {
-        setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
+        // Reset at midnight - this handles the edge case
+        setTimeLeft({ hours: 23, minutes: 59, seconds: 59 });
       }
     };
 
